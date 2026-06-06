@@ -183,8 +183,10 @@ st.markdown("""
 # ============================================
 @st.cache_resource
 def load_model():
-    model = joblib.load('hotel_model.pkl')
-    with open('model_columns.json', 'r') as f:
+    import os
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    model = joblib.load(os.path.join(BASE_DIR, 'hotel_model.pkl'))
+    with open(os.path.join(BASE_DIR, 'model_columns.json'), 'r') as f:
         columns = json.load(f)
     return model, columns
 
